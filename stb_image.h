@@ -17,7 +17,7 @@
 
 
    QUICK NOTES:
-      Primarily of interest to game developers and other people who can
+      Primarily of interest to Game developers and other people who can
           avoid problematic images and only need the trivial interface
 
       JPEG baseline & progressive (12 bpc/arithmetic not supported, same as stock IJG lib)
@@ -337,22 +337,23 @@ RECENT REVISION HISTORY:
 //    very big.
 
 #ifndef STBI_NO_STDIO
-#include <stdio.h>
+
+#include <cstdio>
+
 #endif // STBI_NO_STDIO
 
 #define STBI_VERSION 1
 
-enum
-{
-   STBI_default = 0, // only used for desired_channels
+enum {
+    STBI_default = 0, // only used for desired_channels
 
-   STBI_grey       = 1,
-   STBI_grey_alpha = 2,
+    STBI_grey = 1,
+    STBI_grey_alpha = 2,
    STBI_rgb        = 3,
    STBI_rgb_alpha  = 4
 };
 
-#include <stdlib.h>
+#include <cstdlib>
 typedef unsigned char stbi_uc;
 typedef unsigned short stbi_us;
 

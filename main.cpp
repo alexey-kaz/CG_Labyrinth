@@ -1,7 +1,6 @@
-#include "common.h"
 #include "Image.h"
 #include "Player.h"
-
+#include <map>
 #define GLFW_DLL
 #include <GLFW/glfw3.h>
 
@@ -77,9 +76,6 @@ void OnMouseMove(GLFWwindow* window, double xpos, double ypos)
         Input.firstMouse = false;
     }
 
-    GLfloat xoffset = float(xpos) - Input.lastX;
-    GLfloat yoffset = Input.lastY - float(ypos);
-
     Input.lastX = float(xpos);
     Input.lastY = float(ypos);
 }
@@ -93,8 +89,7 @@ void OnMouseScroll(GLFWwindow* window, double xoffset, double yoffset)
 
 int initGL()
 {
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-    {
+    if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress)) {
         std::cout << "Failed to initialize OpenGL context" << std::endl;
         return -1;
     }
@@ -104,17 +99,33 @@ int initGL()
     std::cout << "Version: " << glGetString(GL_VERSION) << std::endl;
     std::cout << "GLSL: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
 
-    std::cout << "Controls: "<< std::endl;
-    std::cout << "press right mouse button to capture/release mouse cursor  "<< std::endl;
-    std::cout << "W, A, S, D - movement  "<< std::endl;
+    std::cout << "Controls: " << std::endl;
+    std::cout << "press right mouse button to capture/release mouse cursor  " << std::endl;
+    std::cout << "W, A, S, D - movement  " << std::endl;
     std::cout << "press ESC to exit" << std::endl;
 
     return 0;
 }
 
-int main(int argc, char** argv)
-{
-    if(!glfwInit())
+//static void MapMaker(char txtMap[WINDOW_WIDTH/tileSize][WINDOW_HEIGHT/tileSize]) {
+//    char currentChar = 0;
+//    std::fstream fileToRead;
+//
+//    fileToRead.open ("../resources/Level.txt", std::ios::in);
+//    fileToRead.get(currentChar);
+//    for (int currentCharString = 0, currentCharNumber = 0; currentCharString < WINDOW_HEIGHT/tileSize; currentCharString++){
+//        while (currentChar != '\n'){
+//            txtMap[currentCharNumber++][currentCharString] = currentChar;
+//            fileToRead.get(currentChar);
+//        }
+//        fileToRead.get(currentChar);
+//        currentCharNumber = 0;
+//    }
+//    fileToRead.close();
+//}
+
+int main(int argc, char **argv) {
+    if (!glfwInit())
         return -1;
 
 //	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -123,7 +134,7 @@ int main(int argc, char** argv)
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
     glfwWindowHint(GLFW_COCOA_RETINA_FRAMEBUFFER, GLFW_FALSE);
 
-    GLFWwindow*  window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "task1 base project", nullptr, nullptr);
+    GLFWwindow *window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "task1 base project", nullptr, nullptr);
     if (window == nullptr)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -148,14 +159,12 @@ int main(int argc, char** argv)
 
     Point starting_pos{.x = WINDOW_WIDTH / 2, .y = WINDOW_HEIGHT / 2};
     Player player{starting_pos};
-
     Image img("../resources/tex.png");
     Image screenBuffer(WINDOW_WIDTH, WINDOW_HEIGHT, 4);
 
     glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);  GL_CHECK_ERRORS;
     glClearColor(1.0f, 1.0f, 1.0f, 1.0f); GL_CHECK_ERRORS;
-
-    //game loop
+    //Game loop
     while (!glfwWindowShouldClose(window))
     {
         GLfloat currentFrame = glfwGetTime();
@@ -164,7 +173,7 @@ int main(int argc, char** argv)
         glfwPollEvents();
         processPlayerMovement(player);
         player.Draw(img);
-
+        player.MapMaker(img);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); GL_CHECK_ERRORS;
         glRasterPos2f(-1,1);
         glPixelZoom(1,-1);
