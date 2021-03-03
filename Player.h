@@ -2,6 +2,7 @@
 #define MAIN_PLAYER_H
 
 #include "Image.h"
+#include "Room.h"
 
 enum class MovementDir
 {
@@ -12,8 +13,13 @@ enum class MovementDir
 };
 
 struct Player {
-    explicit Player(Point pos = {.x = 5, .y = 5}) :
-            coords(pos), old_coords(coords) {};
+    explicit Player(Point pos) {
+        room.RoomMaker();
+        pos.x = room.StartPos().first * tileSize;
+        pos.y = room.StartPos().second * tileSize;
+        coords = pos;
+        old_coords = coords;
+    };
 
     bool Moved() const;
 
@@ -21,15 +27,15 @@ struct Player {
 
     void Draw(Image &screen);
 
-    void MapMaker(Image &dest);
+    bool direction_lr = true;
 
+    Room room{};
 private:
     Point coords{.x = 10, .y = 10};
     Point old_coords{.x = 10, .y = 10};
     Pixel color{.r = 255, .g = 0, .b = 255, .a = 255};
     int move_speed = 8;
-    char map[WINDOW_HEIGHT / tileSize][WINDOW_WIDTH / tileSize]{};
-
+    char level_map[WINDOW_HEIGHT / tileSize][WINDOW_WIDTH / tileSize]{};
 };
 
 #endif //MAIN_PLAYER_H

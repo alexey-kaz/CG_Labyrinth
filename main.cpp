@@ -1,6 +1,5 @@
 #include "Image.h"
 #include "Player.h"
-#include <map>
 #define GLFW_DLL
 #include <GLFW/glfw3.h>
 
@@ -107,23 +106,6 @@ int initGL()
     return 0;
 }
 
-//static void MapMaker(char txtMap[WINDOW_WIDTH/tileSize][WINDOW_HEIGHT/tileSize]) {
-//    char currentChar = 0;
-//    std::fstream fileToRead;
-//
-//    fileToRead.open ("../resources/Level.txt", std::ios::in);
-//    fileToRead.get(currentChar);
-//    for (int currentCharString = 0, currentCharNumber = 0; currentCharString < WINDOW_HEIGHT/tileSize; currentCharString++){
-//        while (currentChar != '\n'){
-//            txtMap[currentCharNumber++][currentCharString] = currentChar;
-//            fileToRead.get(currentChar);
-//        }
-//        fileToRead.get(currentChar);
-//        currentCharNumber = 0;
-//    }
-//    fileToRead.close();
-//}
-
 int main(int argc, char **argv) {
     if (!glfwInit())
         return -1;
@@ -147,33 +129,33 @@ int main(int argc, char **argv) {
     glfwSetKeyCallback        (window, OnKeyboardPressed);
     glfwSetCursorPosCallback  (window, OnMouseMove);
     glfwSetMouseButtonCallback(window, OnMouseButtonClicked);
-    glfwSetScrollCallback     (window, OnMouseScroll);
+    glfwSetScrollCallback(window, OnMouseScroll);
 
-    if(initGL() != 0)
+    if (initGL() != 0)
         return -1;
 
     //Reset any OpenGL errors which could be present for some reason
     GLenum gl_error = glGetError();
     while (gl_error != GL_NO_ERROR)
         gl_error = glGetError();
-
-    Point starting_pos{.x = WINDOW_WIDTH / 2, .y = WINDOW_HEIGHT / 2};
-    Player player{starting_pos};
     Image img("../resources/tex.png");
     Image screenBuffer(WINDOW_WIDTH, WINDOW_HEIGHT, 4);
+    Point starting_pos{};
+    Player player{starting_pos};
 
-    glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);  GL_CHECK_ERRORS;
-    glClearColor(1.0f, 1.0f, 1.0f, 1.0f); GL_CHECK_ERRORS;
+    glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+    GL_CHECK_ERRORS;
+    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+    GL_CHECK_ERRORS;
     //Game loop
-    while (!glfwWindowShouldClose(window))
-    {
+    while (!glfwWindowShouldClose(window)) {
         GLfloat currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
         glfwPollEvents();
         processPlayerMovement(player);
         player.Draw(img);
-        player.MapMaker(img);
+        player.room.Draw(img);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); GL_CHECK_ERRORS;
         glRasterPos2f(-1,1);
         glPixelZoom(1,-1);

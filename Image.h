@@ -32,7 +32,7 @@ static Pixel BlendPixel(Pixel oldPixel, Pixel newPixel) {
 }
 
 struct Image {
-    explicit Image(const std::string &a_path);
+    Image(const std::string &a_path);
 
     Image(int a_width, int a_height, int a_channels);
 
@@ -67,7 +67,7 @@ static void drawImage(Image &src, Point coords, Image &dest, int size) {
 #pragma omp parallel for
     for (int y = coords.y; y <= coords.y + size - 1; ++y) {
         for (int x = coords.x; x <= coords.x + size - 1; ++x) {
-            dest.PutPixel(x, y, BlendPixel(dest.GetPixel(x, y), src.GetPixel(x - coords.x, size - y - 1 + coords.y)));
+            dest.PutPixel(x, y, BlendPixel(dest.GetPixel(x, y), src.GetPixel(x - coords.x, y - coords.y)));
         }
     }
 }
