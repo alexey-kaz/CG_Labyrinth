@@ -58,5 +58,17 @@ std::pair<int, int> Room::StartPos() {
 }
 
 bool Room::checkSym(int coord_x, int coord_y, char c) {
-    return room_map[coord_x][coord_y] == c;
+    switch (c) {
+        case '#':
+            return (room_map[coord_x / tileSize][(WINDOW_HEIGHT - 1 - coord_y) / tileSize] == '#' ||
+                    room_map[(coord_x + tileSize - 2) / tileSize][(WINDOW_HEIGHT - 1 - coord_y) / tileSize] == '#' ||
+                    room_map[coord_x / tileSize][(WINDOW_HEIGHT - coord_y - tileSize + 1) / tileSize] == '#' ||
+                    room_map[(coord_x + tileSize - 2) / tileSize][(WINDOW_HEIGHT - coord_y - tileSize + 1) /
+                                                                  tileSize] == '#');
+        case 'x':
+            return (room_map[coord_x / tileSize][(WINDOW_HEIGHT - coord_y - tileSize + 1) / tileSize] == 'x'
+            );
+        default:
+            return false;
+    }
 }

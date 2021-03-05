@@ -5,30 +5,25 @@ void Player::ProcessInput(MovementDir dir) {
     int move_dist = move_speed * 1;
     switch (dir) {
         case MovementDir::UP:
-
-            if ((WINDOW_HEIGHT - coords.y - tileSize - 1 >= WINDOW_HEIGHT) ||
-                room.checkSym(coords.x / tileSize, (WINDOW_HEIGHT - coords.y - tileSize - 1) / tileSize, '#'))
+            if (room.checkSym(coords.x, coords.y + move_dist, '#'))
                 break;
             old_coords.y = coords.y;
             coords.y += move_dist;
             break;
         case MovementDir::DOWN:
-            if ((WINDOW_HEIGHT - coords.y - 1 <= 0) ||
-                room.checkSym(coords.x / tileSize, (WINDOW_HEIGHT - coords.y - 1) / tileSize, '#'))
+            if (room.checkSym(coords.x, coords.y - move_dist, '#'))
                 break;
             old_coords.y = coords.y;
             coords.y -= move_dist;
             break;
         case MovementDir::LEFT:
-            if ((coords.x - 1 <= 0) ||
-                room.checkSym((coords.x - 1) / tileSize, (WINDOW_HEIGHT - coords.y) / tileSize, '#'))
+            if (room.checkSym(coords.x - move_dist, coords.y, '#'))
                 break;
             old_coords.x = coords.x;
             coords.x -= move_dist;
             break;
         case MovementDir::RIGHT:
-            if ((coords.x + tileSize + 1 >= WINDOW_WIDTH) ||
-                room.checkSym((coords.x + tileSize + 1) / tileSize, (WINDOW_HEIGHT - coords.y) / tileSize, '#'))
+            if (room.checkSym(coords.x + move_dist, coords.y, '#'))
                 break;
             old_coords.x = coords.x;
             coords.x += move_dist;
@@ -36,9 +31,7 @@ void Player::ProcessInput(MovementDir dir) {
         default:
             break;
     }
-    if (room.checkSym(coords.x / tileSize, (WINDOW_HEIGHT - coords.y - tileSize + 1) / tileSize, 'x')
-        && ((coords.y + tileSize >= WINDOW_HEIGHT) || (coords.x + tileSize >= WINDOW_WIDTH) ||
-            (coords.x - 1 <= 0) || (coords.y - 1 <= 0)))
+    if (room.checkSym(coords.x, coords.y, 'x'))
         NextRoom(dir);
 }
 

@@ -5,26 +5,23 @@
 #include "Room.h"
 #include "Level.h"
 
-enum class MovementDir
-{
-  UP,
-  DOWN,
-  LEFT,
-  RIGHT
+enum class MovementDir {
+    UP,
+    DOWN,
+    LEFT,
+    RIGHT
 };
 
 struct Player {
     explicit Player(Point pos) {
-            level.LevelMaker();
-            level_pos = std::make_pair(level.EntrancePos().first, level.EntrancePos().second);
-            room.RoomMaker('E');
-            pos.x = room.StartPos().first * tileSize + 1;
-            pos.y = WINDOW_HEIGHT - room.StartPos().second * tileSize - tileSize + 1;
-            coords = pos;
-            old_coords = coords;
+        level.LevelMaker();
+        level_pos = std::make_pair(level.EntrancePos().first, level.EntrancePos().second);
+        room.RoomMaker('E');
+        pos.x = room.StartPos().first * tileSize + 1;
+        pos.y = WINDOW_HEIGHT - room.StartPos().second * tileSize - tileSize + 1;
+        coords = pos;
+        old_coords = coords;
     };
-
-    bool Moved() const;
 
     void ProcessInput(MovementDir dir);
 
