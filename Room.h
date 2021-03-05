@@ -8,7 +8,7 @@
 
 struct Room {
 
-    void RoomMaker();
+    void RoomMaker(char file_name);
 
     void Draw(Image &deststatic);
 
@@ -16,7 +16,7 @@ struct Room {
 
     char room_map[WINDOW_HEIGHT / tileSize][WINDOW_WIDTH / tileSize];
 
-    bool checkWall(int coord_x, int coord_y);
+    bool checkSym(int coord_x, int coord_y, char c);
 };
 
 

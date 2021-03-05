@@ -1,4 +1,3 @@
-#include "Image.h"
 #include "Player.h"
 #define GLFW_DLL
 #include <GLFW/glfw3.h>
@@ -154,8 +153,8 @@ int main(int argc, char **argv) {
         lastFrame = currentFrame;
         glfwPollEvents();
         processPlayerMovement(player);
-        player.Draw(img);
         player.room.Draw(img);
+        player.Draw(img);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); GL_CHECK_ERRORS;
         glRasterPos2f(-1,1);
         glPixelZoom(1,-1);

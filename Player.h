@@ -3,6 +3,7 @@
 
 #include "Image.h"
 #include "Room.h"
+#include "Level.h"
 
 enum class MovementDir
 {
@@ -14,11 +15,13 @@ enum class MovementDir
 
 struct Player {
     explicit Player(Point pos) {
-        room.RoomMaker();
-        pos.x = room.StartPos().first * tileSize;
-        pos.y = room.StartPos().second * tileSize;
-        coords = pos;
-        old_coords = coords;
+            level.LevelMaker();
+            level_pos = std::make_pair(level.EntrancePos().first, level.EntrancePos().second);
+            room.RoomMaker('E');
+            pos.x = room.StartPos().first * tileSize + 1;
+            pos.y = WINDOW_HEIGHT - room.StartPos().second * tileSize - tileSize + 1;
+            coords = pos;
+            old_coords = coords;
     };
 
     bool Moved() const;
@@ -27,15 +30,20 @@ struct Player {
 
     void Draw(Image &screen);
 
+    void NextRoom(MovementDir dir);
+
     bool direction_lr = true;
 
     Room room{};
+
+    Level level{};
 private:
     Point coords{.x = 10, .y = 10};
     Point old_coords{.x = 10, .y = 10};
     Pixel color{.r = 255, .g = 0, .b = 255, .a = 255};
     int move_speed = 8;
-    char level_map[WINDOW_HEIGHT / tileSize][WINDOW_WIDTH / tileSize]{};
+    std::pair<int, int> level_pos;
+
 };
 
 #endif //MAIN_PLAYER_H
