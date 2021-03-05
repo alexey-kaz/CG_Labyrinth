@@ -33,6 +33,10 @@ void Player::ProcessInput(MovementDir dir) {
     }
     if (room.checkSym(coords.x, coords.y, 'x'))
         NextRoom(dir);
+    if (room.checkSym(coords.x, coords.y, 'Q'))
+        finish = true;
+    if (room.checkSym(coords.x, coords.y, 'T') || room.checkSym(coords.x, coords.y, ' '))
+        alive = false;
 }
 
 void Player::Draw(Image &screen) {

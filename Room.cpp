@@ -66,8 +66,27 @@ bool Room::checkSym(int coord_x, int coord_y, char c) {
                     room_map[(coord_x + tileSize - 2) / tileSize][(WINDOW_HEIGHT - coord_y - tileSize + 1) /
                                                                   tileSize] == '#');
         case 'x':
-            return (room_map[coord_x / tileSize][(WINDOW_HEIGHT - coord_y - tileSize + 1) / tileSize] == 'x'
-            );
+            return (room_map[coord_x / tileSize][(WINDOW_HEIGHT - coord_y - tileSize + 1) / tileSize] == 'x');
+        case 'Q':
+            return (room_map[coord_x / tileSize][(WINDOW_HEIGHT - coord_y - tileSize + 1) / tileSize] == 'Q');
+        case 'T':
+        case ' ':
+            return (room_map[(coord_x + tileSize / 2 - 1) / tileSize][(WINDOW_HEIGHT - 1 - coord_y - tileSize / 2) /
+                                                                      tileSize] == 'T' ||
+                    room_map[(coord_x + tileSize / 2) / tileSize][(WINDOW_HEIGHT - 1 - coord_y - tileSize / 2) /
+                                                                  tileSize] == 'T' ||
+                    room_map[(coord_x + tileSize / 2 - 1) / tileSize][(WINDOW_HEIGHT - coord_y - tileSize / 2) /
+                                                                      tileSize] == 'T' ||
+                    room_map[(coord_x + tileSize / 2) / tileSize][(WINDOW_HEIGHT - coord_y - tileSize / 2) /
+                                                                  tileSize] == 'T' ||
+                    room_map[(coord_x + tileSize / 2 - 1) / tileSize][(WINDOW_HEIGHT - 1 - coord_y - tileSize / 2) /
+                                                                      tileSize] == ' ' ||
+                    room_map[(coord_x + tileSize / 2) / tileSize][(WINDOW_HEIGHT - 1 - coord_y - tileSize / 2) /
+                                                                  tileSize] == ' ' ||
+                    room_map[(coord_x + tileSize / 2 - 1) / tileSize][(WINDOW_HEIGHT - coord_y - tileSize / 2) /
+                                                                      tileSize] == ' ' ||
+                    room_map[(coord_x + tileSize / 2) / tileSize][(WINDOW_HEIGHT - coord_y - tileSize / 2) /
+                                                                  tileSize] == ' ');
         default:
             return false;
     }

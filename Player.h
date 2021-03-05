@@ -31,6 +31,10 @@ struct Player {
 
     bool direction_lr = true;
 
+    bool alive = true;
+
+    bool finish = false;
+
     Room room{};
 
     Level level{};

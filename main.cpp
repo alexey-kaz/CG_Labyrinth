@@ -142,16 +142,36 @@ int main(int argc, char **argv) {
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
         glfwPollEvents();
-        processPlayerMovement(player);
-        player.room.Draw(img);
-        player.Draw(img);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        GL_CHECK_ERRORS;
-        glRasterPos2f(-1, 1);
-        glPixelZoom(1, -1);
-        glDrawPixels(WINDOW_WIDTH, WINDOW_HEIGHT, GL_RGBA, GL_UNSIGNED_BYTE, img.Data());
-        GL_CHECK_ERRORS;
-        glfwSwapBuffers(window);
+        if (player.alive && !player.finish) {
+            processPlayerMovement(player);
+            player.room.Draw(img);
+            player.Draw(img);
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            GL_CHECK_ERRORS;
+            glRasterPos2f(-1, 1);
+            glPixelZoom(1, -1);
+            glDrawPixels(WINDOW_WIDTH, WINDOW_HEIGHT, GL_RGBA, GL_UNSIGNED_BYTE, img.Data());
+            GL_CHECK_ERRORS;
+            glfwSwapBuffers(window);
+        } else if (!player.alive) {
+            Image GOScreen("../resources/Game_Over.png");
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            GL_CHECK_ERRORS;
+            glRasterPos2f(-1, 1);
+            glPixelZoom(1, -1);
+            glDrawPixels(WINDOW_WIDTH, WINDOW_HEIGHT, GL_RGBA, GL_UNSIGNED_BYTE, GOScreen.Data());
+            GL_CHECK_ERRORS;
+            glfwSwapBuffers(window);
+        } else {
+            Image FinishScreen("../resources/Fin.png");
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            GL_CHECK_ERRORS;
+            glRasterPos2f(-1, 1);
+            glPixelZoom(1, -1);
+            glDrawPixels(WINDOW_WIDTH, WINDOW_HEIGHT, GL_RGBA, GL_UNSIGNED_BYTE, FinishScreen.Data());
+            GL_CHECK_ERRORS;
+            glfwSwapBuffers(window);
+        }
     }
 
     glfwTerminate();
