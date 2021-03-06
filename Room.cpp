@@ -4,6 +4,7 @@
 
 #include "Room.h"
 #include "Level.h"
+#include "cmath"
 
 void Room::RoomMaker(char file_name) {
     char currentChar = 0;

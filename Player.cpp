@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "cmath"
 
 
 void Player::ProcessInput(MovementDir dir) {
