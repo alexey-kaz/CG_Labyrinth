@@ -5,7 +5,7 @@
 #include "common.h"
 #include <glad/glad.h>
 
-constexpr int tileSize = 32;
+constexpr int tileSize = 16;
 constexpr GLsizei WINDOW_WIDTH = 512, WINDOW_HEIGHT = 512;
 
 struct Pixel {

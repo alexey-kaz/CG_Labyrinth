@@ -31,16 +31,29 @@ void Room::Draw(Image &dest) {
                 Image A("./resources/Wall.png");
                 drawImage(A, {i * tileSize, j * tileSize}, dest, tileSize);
             } else if (room_map[i][j] == ' ') {
-                Image A("./resources/Space.png");
+                int fr = fmod(floor(frame), 4);
+                Image A("./resources/tex_tile.png");
+                std::string file = "./resources/Fire/Fire";
+                file += std::to_string(fr) + ".png";
+                Image B(file);
                 drawImage(A, {i * tileSize, j * tileSize}, dest, tileSize);
+                drawImage(B, {i * tileSize, j * tileSize}, dest, tileSize);
             } else if (room_map[i][j] == 'x') {
                 Image A("./resources/X.png");
                 drawImage(A, {i * tileSize, j * tileSize}, dest, tileSize);
             } else if (room_map[i][j] == 'Q') {
-                Image A("./resources/Q.png");
+                int fr = fmod(floor(frame), 8);
+                Image A("./resources/tex_tile.png");
+                std::string file = "./resources/Q/Q";
+                file += std::to_string(fr) + ".png";
+                Image B(file);
                 drawImage(A, {i * tileSize, j * tileSize}, dest, tileSize);
+                drawImage(B, {i * tileSize, j * tileSize}, dest, tileSize);
             } else if (room_map[i][j] == 'T') {
-                Image A("./resources/Trap.png");
+                int fr = fmod(floor(frame), 8);
+                std::string file = "./resources/Trap/Trap";
+                file += std::to_string(fr) + ".png";
+                Image A(file);
                 drawImage(A, {i * tileSize, j * tileSize}, dest, tileSize);
             } else if (room_map[i][j] == '.' || room_map[i][j] == '@') {
                 Image A("./resources/tex_tile.png");

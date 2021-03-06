@@ -127,7 +127,7 @@ int main(int argc, char **argv) {
     GLenum gl_error = glGetError();
     while (gl_error != GL_NO_ERROR)
         gl_error = glGetError();
-    Image img("./resources/tex.png");
+    Image img("./resources/tex512.png");
     Image screenBuffer(WINDOW_WIDTH, WINDOW_HEIGHT, 4);
     Point starting_pos{};
     Player player{starting_pos};
@@ -144,6 +144,7 @@ int main(int argc, char **argv) {
         glfwPollEvents();
         if (player.alive && !player.finish) {
             processPlayerMovement(player);
+            player.room.frame += 0.2;
             player.room.Draw(img);
             player.Draw(img);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

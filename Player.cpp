@@ -40,8 +40,10 @@ void Player::ProcessInput(MovementDir dir) {
 }
 
 void Player::Draw(Image &screen) {
-    Image back("./resources/tex.png");
-    Image player("./resources/Rogue_R.png");
+    int fr = fmod(floor(room.frame), 4);
+    std::string file = "./resources/Sprite/Sprite";
+    file += std::to_string(fr) + ".png";
+    Image player(file);
     if (coords.x > old_coords.x)
         direction_lr = true;
     else if (coords.x < old_coords.x)

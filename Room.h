@@ -14,9 +14,11 @@ struct Room {
 
     std::pair<int, int> StartPos();
 
-    char room_map[WINDOW_HEIGHT / tileSize][WINDOW_WIDTH / tileSize];
+    char room_map[WINDOW_HEIGHT / tileSize][WINDOW_WIDTH / tileSize]{};
 
     bool checkSym(int coord_x, int coord_y, char c);
+
+    float frame = 0;
 };
 
 
