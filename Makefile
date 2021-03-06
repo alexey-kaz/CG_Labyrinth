@@ -67,10 +67,10 @@ RM = /usr/local/Cellar/cmake/3.18.2/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/air/msu_cmc_cg_2021/template1_cpp
+CMAKE_SOURCE_DIR = /Users/air/CG_Labyrinth
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/air/msu_cmc_cg_2021/template1_cpp
+CMAKE_BINARY_DIR = /Users/air/CG_Labyrinth
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,9 +99,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/air/msu_cmc_cg_2021/template1_cpp/CMakeFiles /Users/air/msu_cmc_cg_2021/template1_cpp//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/air/CG_Labyrinth/CMakeFiles /Users/air/CG_Labyrinth//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/air/msu_cmc_cg_2021/template1_cpp/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/air/CG_Labyrinth/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -169,6 +169,33 @@ Image.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Image.cpp.s
 .PHONY : Image.cpp.s
 
+Level.o: Level.cpp.o
+
+.PHONY : Level.o
+
+# target to build an object file
+Level.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Level.cpp.o
+.PHONY : Level.cpp.o
+
+Level.i: Level.cpp.i
+
+.PHONY : Level.i
+
+# target to preprocess a source file
+Level.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Level.cpp.i
+.PHONY : Level.cpp.i
+
+Level.s: Level.cpp.s
+
+.PHONY : Level.s
+
+# target to generate assembly for a file
+Level.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Level.cpp.s
+.PHONY : Level.cpp.s
+
 Player.o: Player.cpp.o
 
 .PHONY : Player.o
@@ -195,6 +222,33 @@ Player.s: Player.cpp.s
 Player.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Player.cpp.s
 .PHONY : Player.cpp.s
+
+Room.o: Room.cpp.o
+
+.PHONY : Room.o
+
+# target to build an object file
+Room.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Room.cpp.o
+.PHONY : Room.cpp.o
+
+Room.i: Room.cpp.i
+
+.PHONY : Room.i
+
+# target to preprocess a source file
+Room.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Room.cpp.i
+.PHONY : Room.cpp.i
+
+Room.s: Room.cpp.s
+
+.PHONY : Room.s
+
+# target to generate assembly for a file
+Room.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Room.cpp.s
+.PHONY : Room.cpp.s
 
 glad.o: glad.c.o
 
@@ -262,9 +316,15 @@ help:
 	@echo "... Image.o"
 	@echo "... Image.i"
 	@echo "... Image.s"
+	@echo "... Level.o"
+	@echo "... Level.i"
+	@echo "... Level.s"
 	@echo "... Player.o"
 	@echo "... Player.i"
 	@echo "... Player.s"
+	@echo "... Room.o"
+	@echo "... Room.i"
+	@echo "... Room.s"
 	@echo "... glad.o"
 	@echo "... glad.i"
 	@echo "... glad.s"
