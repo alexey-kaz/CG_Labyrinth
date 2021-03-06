@@ -127,7 +127,7 @@ int main(int argc, char **argv) {
     GLenum gl_error = glGetError();
     while (gl_error != GL_NO_ERROR)
         gl_error = glGetError();
-    Image img("../resources/tex.png");
+    Image img("./resources/tex.png");
     Image screenBuffer(WINDOW_WIDTH, WINDOW_HEIGHT, 4);
     Point starting_pos{};
     Player player{starting_pos};
@@ -154,7 +154,7 @@ int main(int argc, char **argv) {
             GL_CHECK_ERRORS;
             glfwSwapBuffers(window);
         } else if (!player.alive) {
-            Image GOScreen("../resources/Game_Over.png");
+            Image GOScreen("./resources/Game_Over.png");
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             GL_CHECK_ERRORS;
             glRasterPos2f(-1, 1);
@@ -163,7 +163,7 @@ int main(int argc, char **argv) {
             GL_CHECK_ERRORS;
             glfwSwapBuffers(window);
         } else {
-            Image FinishScreen("../resources/Fin.png");
+            Image FinishScreen("./resources/Fin.png");
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             GL_CHECK_ERRORS;
             glRasterPos2f(-1, 1);

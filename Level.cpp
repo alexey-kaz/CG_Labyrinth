@@ -8,7 +8,7 @@ void Level::LevelMaker() {
     char currentChar = 0;
     std::fstream fileToRead;
 
-    fileToRead.open("../resources/Level.txt", std::ios::in);
+    fileToRead.open("./resources/Level.txt", std::ios::in);
     fileToRead.get(currentChar);
     for (int currentCharString = 0; currentCharString < 10; currentCharString++) {
         int currentCharNumber = 0;

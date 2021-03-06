@@ -8,7 +8,7 @@
 void Room::RoomMaker(char file_name) {
     char currentChar = 0;
     std::fstream fileToRead;
-    std::string file_path("../resources/");
+    std::string file_path("./resources/");
     file_path += file_name;
     file_path.append(".txt");
     fileToRead.open(file_path, std::ios::in);
@@ -28,22 +28,22 @@ void Room::Draw(Image &dest) {
     for (int i = 0; i < WINDOW_HEIGHT / tileSize; ++i)
         for (int j = 0; j < WINDOW_WIDTH / tileSize; ++j) {
             if (room_map[i][j] == '#') {
-                Image A("../resources/Wall.png");
+                Image A("./resources/Wall.png");
                 drawImage(A, {i * tileSize, j * tileSize}, dest, tileSize);
             } else if (room_map[i][j] == ' ') {
-                Image A("../resources/Space.png");
+                Image A("./resources/Space.png");
                 drawImage(A, {i * tileSize, j * tileSize}, dest, tileSize);
             } else if (room_map[i][j] == 'x') {
-                Image A("../resources/X.png");
+                Image A("./resources/X.png");
                 drawImage(A, {i * tileSize, j * tileSize}, dest, tileSize);
             } else if (room_map[i][j] == 'Q') {
-                Image A("../resources/Q.png");
+                Image A("./resources/Q.png");
                 drawImage(A, {i * tileSize, j * tileSize}, dest, tileSize);
             } else if (room_map[i][j] == 'T') {
-                Image A("../resources/Trap.png");
+                Image A("./resources/Trap.png");
                 drawImage(A, {i * tileSize, j * tileSize}, dest, tileSize);
             } else if (room_map[i][j] == '.' || room_map[i][j] == '@') {
-                Image A("../resources/tex_tile.png");
+                Image A("./resources/tex_tile.png");
                 drawImage(A, {i * tileSize, j * tileSize}, dest, tileSize);
             }
         }
